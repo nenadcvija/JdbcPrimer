@@ -1,5 +1,6 @@
 package jdbc;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import controller.MetodeJdbc;
@@ -35,14 +36,49 @@ public class JdbcProject {
 		 */
 		
 		
-		List<User> lstUsers = metode.vratiSveUsere();
+		/*
+		 * List<User> lstUsers = metode.vratiSveUsere();
+		 * 
+		 * for(User u: lstUsers) { System.out.println("ID: " +u.getIdUser());
+		 * System.out.println("USER NAME: " + u.getUserName());
+		 * System.out.println("PASSWORD: " + u.getPassword());
+		 * System.out.println("MATBR: " + u.getMaticniBroj()); }
+		 */
+	
 		
-		for(User u: lstUsers) {
-			System.out.println("ID: " +u.getIdUser());
-			System.out.println("USER NAME: " + u.getUserName());
-			System.out.println("PASSWORD: " + u.getPassword());
-			System.out.println("MATBR: " + u.getMaticniBroj());
+		  Scanner scanner = new Scanner(System.in);
+		  System.out.println("Unesite username: ");
+		  
+		  String userName = scanner.nextLine();
+		  
+		  int id = metode.vratiIdPoUserneme(userName);
+		  
+		  List<String> listaBrojevaTelefona = new ArrayList<String>();
+		  
+		  if(id != 0) {
+		  
+		  listaBrojevaTelefona = metode.vratiBrojTelefona(id);
+		  
+		  for(String s : listaBrojevaTelefona) { System.out.println(s); }
+		  
+		  }else { System.out.println("Nepostojeci user!"); }
+		 
+			
+		
+		
+		List<Integer> listaIdKurseva = new ArrayList<Integer>();
+		
+		listaIdKurseva = metode.vratiIdKursaPoIdUsera(id);
+		
+		for(int i: listaIdKurseva) {
+			Kurs kurs = metode.vratiKursPoId(i);
+			System.out.println(kurs.getImeKursa() + " " + kurs.getCena());
 		}
+
+		
+		
+		
+		
 		
 		
 
