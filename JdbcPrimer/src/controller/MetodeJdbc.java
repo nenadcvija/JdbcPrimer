@@ -169,9 +169,7 @@ public class MetodeJdbc {
 		Kurs kurs = new Kurs();
 		
 		try {
-			konekcija = uspostaviKonekciju("kursevi");
-			System.out.println("Konekcija uspostavljena");
-			
+			konekcija = uspostaviKonekciju("kursevi");	
 			String query = "SELECT * FROM courses WHERE id_courses = ?";		
 			pst = konekcija.prepareStatement(query);
 				pst.setInt(1, id);
